@@ -53,6 +53,7 @@ public class TextBlankQuestionFragment extends Fragment {
                     response = response.concat(blankHolder.getText().toString());
                     response = (i < NumBlanks-1) ? response.concat(",") : response; //Add comma
                 }
+                //Do validation of response here.
                 //Add to response JSON
                 ((MainActivity) getActivity()).updateResponse(questionId,response);
                 ((MainActivity) getActivity()).navigateQuestion();

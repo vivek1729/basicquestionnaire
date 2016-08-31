@@ -57,11 +57,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
-    /**Helper function that returns status of completition of questionnaire**/
+    /**helper method that returns status of completition of questionnaire**/
     public boolean endOfQuestions(){
         if(currentIndex == MasterQuestionList.length() -1)
             return true;
         return false;
+    }
+
+    /***helper method to return Response object***/
+    public JSONArray getResponses(){
+        return ResponseList;
     }
 
     /***helper method to parse JSON from assets file**/
@@ -91,6 +96,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void navigateQuestion(){
         currentIndex = currentIndex + 1;
         mFragmentManager = getSupportFragmentManager();
+        if(currentIndex == MasterQuestionList.length()){
+            //Last question has been completed
+            FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
+            mFragmentTransaction.replace(R.id.containerView,new QuesCompleteFragment()).commit();
+        }
         try {
             currentQuestion = MasterQuestionList.getJSONObject(currentIndex); //Get question
             Log.d("question",currentQuestion.getString("question"));

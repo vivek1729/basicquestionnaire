@@ -52,6 +52,7 @@ public class CheckboxQuestionFragment extends Fragment {
             public void onClick(View v) {
                 //Call the navigate method from main activity
                 Log.d("question",Arrays.toString(finalSelection));
+                //Do validation of response here.
                 //Add to response JSON
                 String response = TextUtils.join(",", finalSelection);
                 ((MainActivity) getActivity()).updateResponse(questionId,response);

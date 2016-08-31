@@ -46,6 +46,7 @@ public class RadiobuttonQuestionFragment extends Fragment {
             public void onClick(View v) {
                 //Call the navigate method from main activity
                 Log.d("question", finalSelection);
+                //Do validation of response here.
                 //Add to response JSON
                 ((MainActivity) getActivity()).updateResponse(questionId,finalSelection);
                 ((MainActivity) getActivity()).navigateQuestion();
