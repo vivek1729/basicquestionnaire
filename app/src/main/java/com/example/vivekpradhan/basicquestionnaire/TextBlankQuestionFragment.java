@@ -25,6 +25,7 @@ import org.json.JSONObject;
 public class TextBlankQuestionFragment extends Fragment {
     int NumBlanks = 0;
     int baseIndex = 1729;
+    int questionId;
     public TextBlankQuestionFragment() {
         // Required empty public constructor
     }
@@ -35,6 +36,7 @@ public class TextBlankQuestionFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View w =  inflater.inflate(R.layout.fragment_checkbox_question, container, false);
+        questionId = getArguments().getInt("questionId");
         Button next = (Button) w.findViewById(R.id.next);
         /**Update button text when end reached**/
         if(((MainActivity) getActivity()).endOfQuestions()){
@@ -44,11 +46,15 @@ public class TextBlankQuestionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Call the navigate method from main activity
+                String response = "";
                 for(int i=0;i<NumBlanks;i++){
                     EditText blankHolder = (EditText) w.findViewById(baseIndex + i);
                     Log.d("question", blankHolder.getText().toString());
+                    response = response.concat(blankHolder.getText().toString());
+                    response = (i < NumBlanks-1) ? response.concat(",") : response; //Add comma
                 }
                 //Add to response JSON
+                ((MainActivity) getActivity()).updateResponse(questionId,response);
                 ((MainActivity) getActivity()).navigateQuestion();
             }
         });

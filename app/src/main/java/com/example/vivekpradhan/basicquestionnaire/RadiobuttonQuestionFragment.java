@@ -9,8 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -26,6 +24,7 @@ import org.json.JSONObject;
 public class RadiobuttonQuestionFragment extends Fragment {
     String finalSelection;
     int baseIndex = 1729;
+    int questionId;
     public RadiobuttonQuestionFragment() {
         // Required empty public constructor
     }
@@ -36,6 +35,7 @@ public class RadiobuttonQuestionFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View w =  inflater.inflate(R.layout.fragment_radiobutton_question, container, false);
+        questionId = getArguments().getInt("questionId");
         Button next = (Button) w.findViewById(R.id.next);
         /**Update button text when end reached**/
         if(((MainActivity) getActivity()).endOfQuestions()){
@@ -47,6 +47,7 @@ public class RadiobuttonQuestionFragment extends Fragment {
                 //Call the navigate method from main activity
                 Log.d("question", finalSelection);
                 //Add to response JSON
+                ((MainActivity) getActivity()).updateResponse(questionId,finalSelection);
                 ((MainActivity) getActivity()).navigateQuestion();
             }
         });

@@ -3,6 +3,7 @@ package com.example.vivekpradhan.basicquestionnaire;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import java.util.Arrays;
 public class CheckboxQuestionFragment extends Fragment {
     String [] finalSelection;
     int baseIndex = 1729;
+    int questionId;
     public CheckboxQuestionFragment() {
         // Required empty public constructor
     }
@@ -39,6 +41,7 @@ public class CheckboxQuestionFragment extends Fragment {
         LinearLayout.LayoutParams checkParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         View w =  inflater.inflate(R.layout.fragment_checkbox_question, container, false);
+        questionId = getArguments().getInt("questionId");
         Button next = (Button) w.findViewById(R.id.next);
         /**Update button text when end reached**/
         if(((MainActivity) getActivity()).endOfQuestions()){
@@ -50,6 +53,8 @@ public class CheckboxQuestionFragment extends Fragment {
                 //Call the navigate method from main activity
                 Log.d("question",Arrays.toString(finalSelection));
                 //Add to response JSON
+                String response = TextUtils.join(",", finalSelection);
+                ((MainActivity) getActivity()).updateResponse(questionId,response);
                 ((MainActivity) getActivity()).navigateQuestion();
             }
         });

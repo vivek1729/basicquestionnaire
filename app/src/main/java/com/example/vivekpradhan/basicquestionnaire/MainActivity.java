@@ -129,6 +129,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    public void updateResponse(int qId, String response){
+        //Find question for that id and add response property
+        for (int i = 0; i < ResponseList.length(); i++) {
+            try {
+                JSONObject jo_inside = ResponseList.getJSONObject(i);
+                if(jo_inside.getInt("id") == qId)
+                {
+                    jo_inside.put("response",response); //Add response String to response key
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        Log.d("question",ResponseList.toString());
+    }
     public JSONObject getCurrentQuestion(){
         return currentQuestion;
     }
