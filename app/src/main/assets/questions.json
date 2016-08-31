@@ -4,7 +4,7 @@
       "id": 1,
       "type": "blank",
       "question" : "This is the text of the question and _____ is a blank",
-      "blanks" : 2
+      "blanks" : 1
     },
     {
       "id": 2,
