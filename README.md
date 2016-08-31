@@ -53,7 +53,7 @@ Currently string only.
 
 ##Response format
 The responses are saved in a JSON mimicking the question format.
-So for the above questions, a response object could look like (notice the **`response`**) :
+So for the above questions, a response object could look like (notice the **`response`** key in `questions` array) :
 
 ```json
 {
