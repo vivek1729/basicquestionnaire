@@ -57,6 +57,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
+    /**Helper function that returns status of completition of questionnaire**/
+    public boolean endOfQuestions(){
+        if(currentIndex == MasterQuestionList.length() -1)
+            return true;
+        return false;
+    }
 
     /***helper method to parse JSON from assets file**/
     public JSONArray getFromJSON(){

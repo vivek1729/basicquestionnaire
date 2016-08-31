@@ -36,6 +36,10 @@ public class TextBlankQuestionFragment extends Fragment {
         // Inflate the layout for this fragment
         final View w =  inflater.inflate(R.layout.fragment_checkbox_question, container, false);
         Button next = (Button) w.findViewById(R.id.next);
+        /**Update button text when end reached**/
+        if(((MainActivity) getActivity()).endOfQuestions()){
+            next.setText("Submit");
+        }
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
